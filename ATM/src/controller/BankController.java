@@ -41,8 +41,7 @@ public class BankController {
 	public BankController() {
 		aDAO = new AccountDAO();
 		cDAO = new ClientDAO();
-		sc = new Util();
-		sc.tempData(aDAO, cDAO);
+		Util.tempData(aDAO, cDAO);
 	}
 
 	// 실제 컨트롤하는 메서드
@@ -54,20 +53,20 @@ public class BankController {
 			System.out.println("[1]관리자");
 			System.out.println("[2]사용자");
 			System.out.println("[0]종료");
-			int sel = sc.getValue("선택", start, end); // 메뉴를 선택하고
+			int sel = Util.getValue("선택", start, end); // 메뉴를 선택하고
 			if (sel == 1) { // 관리자
 				managerMenu();
 			}else if(sel == 2) { // 사용자
 				ClientMenu();
 			}else if(sel==0){
 				System.out.println("종료");
-				sc.closeUtil();
+				Util.sc.close();;
 				break;
 			}
 		}
 	}
 	// 관리자 메뉴
-	void managerMenu() {
+	private void managerMenu() {
 		int start = 0;
 		int end = 5;
 		while(true) {
@@ -78,7 +77,7 @@ public class BankController {
 			System.out.println("[4]데이터저장");
 			System.out.println("[5]데이터불러오기");
 			System.out.println("[0]뒤로가기");
-		int sel = sc.getValue("선택", start, end); // 메뉴를 선택하고
+		int sel = Util.getValue("선택", start, end); // 메뉴를 선택하고
 			if (sel == 1) { // 회원 목록
 				cDAO.printClient();
 			}else if(sel == 2) { // 회원 수정
@@ -86,9 +85,9 @@ public class BankController {
 			}else if(sel == 3) { // 회원 삭제
 				cDAO.adminDeleteClient(aDAO);
 			}else if(sel == 4) { // 데이터 저장
-				sc.saveToFile(aDAO, cDAO);
+				Util.saveToFile(aDAO, cDAO);
 			}else if(sel == 5) { // 데이터 불러오기
-				sc.loadFromFile(aDAO, cDAO);
+				Util.loadFromFile(aDAO, cDAO);
 			}else if(sel == 0){ // 메인메뉴로
 				System.out.println("메인메뉴로 갑니다");
 				break;
@@ -96,7 +95,7 @@ public class BankController {
 		}
 	}
 	// 사용자 메뉴 - 비 로그인
-	void ClientMenu() {
+	private void ClientMenu() {
 		int start = 0;
 		int end = 2;
 		while(true) {
@@ -104,7 +103,7 @@ public class BankController {
 			System.out.println("[1]회원가입");
 			System.out.println("[2]로그인");
 			System.out.println("[0]뒤로가기");
-			int sel = sc.getValue("선택", start, end); // 메뉴를 선택하고
+			int sel = Util.getValue("선택", start, end); // 메뉴를 선택하고
 			if (sel == 1) { // 회원 가입
 				cDAO.createClient();
 			}else if(sel == 2) { // 로그인
@@ -119,7 +118,7 @@ public class BankController {
 		}
 	}	
 	// 사용자 메뉴 - 로그인 중
-	void loginClient(String id) {
+	private void loginClient(String id) {
 		int start = 0;
 		int end = 7;
 		while(true) {
@@ -132,7 +131,7 @@ public class BankController {
 			System.out.println("[6]탈퇴");
 			System.out.println("[7]마이페이지");
 			System.out.println("[0]로그아웃");
-			int sel = sc.getValue("선택", start, end); // 메뉴를 선택하고
+			int sel = Util.getValue("선택", start, end); // 메뉴를 선택하고
 			if (sel == 1) { // 계좌추가
 				aDAO.addAccNumber(cDAO, id);
 			}else if(sel == 2) { // 계좌삭제

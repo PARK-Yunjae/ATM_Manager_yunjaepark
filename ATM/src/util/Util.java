@@ -47,7 +47,7 @@ public class Util {
 	}
 	// 데이터 저장
 	public static void saveData(String fileName, String data) {
-		try(FileWriter fw = new FileWriter("src//ATM//"+fileName)){
+		try(FileWriter fw = new FileWriter("src//util//"+fileName)){
 			fw.write(data);
 			System.out.println(fileName+"저장 성공");
 		}catch (IOException e) {
@@ -67,7 +67,7 @@ public class Util {
 	// 데이터 불러오기
 	public static String loadData(String fileName) {
 		String data = "";
-		try(FileReader fr = new FileReader("src//ATM//"+fileName);
+		try(FileReader fr = new FileReader("src//util//"+fileName);
 			BufferedReader br = new BufferedReader(fr)){
 			while(true) {
 				String line = br.readLine();
@@ -89,7 +89,7 @@ public class Util {
 		String userdata = "1001/test01/pw1/김철수\n";
 		userdata += "1002/test02/pw2/이영희\n";
 		userdata += "1003/test03/pw3/신민수\n";
-		userdata += "1004/test04/pw4/최상민\n";
+		userdata += "1004/test04/pw4/최상민";
 		
 		cDAO.addClientFromData(userdata);
 		
@@ -100,13 +100,8 @@ public class Util {
 		accountdata += "test01/5555-5555-5555/5400\n";
 		accountdata += "test02/6666-6666-6666/1000\n";
 		accountdata += "test03/7777-7777-7777/1000\n";
-		accountdata += "test04/8888-8888-8888/1000\n";
+		accountdata += "test04/8888-8888-8888/1000";
 		
 		aDAO.addAccountFromData(accountdata);
-	}
-
-	// 종료 시 닫기
-	void closeUtil() {
-		sc.close();
 	}
 }
