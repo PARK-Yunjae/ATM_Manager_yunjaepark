@@ -1,4 +1,4 @@
-package ATM;
+package dao;
 
 public class ClientDAO {
 	Client[] cList;

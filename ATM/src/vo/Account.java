@@ -1,4 +1,4 @@
-package ATM;
+package vo;
 
 // 통장 
 // 한 회원 마다 계죄 3개까지 만들 수 있음

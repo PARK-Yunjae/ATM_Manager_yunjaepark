@@ -1,5 +1,10 @@
-package ATM;
-// [1]관리자 [2]사용자 [0]종료
+package controller;
+
+import dao.AccountDAO;
+import dao.ClientDAO;
+import util.Util;
+
+/* [1]관리자 [2]사용자 [0]종료
 
 // 관리자
 // [1]회원목록 [2]회원수정 [3]회원삭제 [4]데이터저장 [5]데이터불러오기 [0]뒤로가기
@@ -24,16 +29,16 @@ package ATM;
 // 탈퇴 : 패스워드 다시 입력 -> 탈퇴 가능
 
 // 마이페이지 : 내계좌( + 잔고 ) 목록 확인
+ */
 
 public class BankController {
 	final String bankName = "니은행";
 
-	AccountDAO aDAO; // 통장
-	ClientDAO cDAO; // 회원
-	Util sc; // 입출력
+	private AccountDAO aDAO; // 통장
+	private ClientDAO cDAO; // 회원
 
 	// 생성자
-	BankController() {
+	public BankController() {
 		aDAO = new AccountDAO();
 		cDAO = new ClientDAO();
 		sc = new Util();
@@ -41,7 +46,7 @@ public class BankController {
 	}
 
 	// 실제 컨트롤하는 메서드
-	void run() {
+	public void run() {
 		int start = 0;
 		int end = 2;
 		while (true) {

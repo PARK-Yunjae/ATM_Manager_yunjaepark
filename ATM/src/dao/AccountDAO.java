@@ -1,16 +1,11 @@
-package ATM;
+package dao;
+
+import java.util.ArrayList;
+
+import vo.Account;
 
 public class AccountDAO {
-	Account[] accList;
-	int cnt;
-	Util sc;
-
-	// 생성자
-	AccountDAO() {
-		accList = null;
-		cnt = 0;
-		sc = new Util();
-	}
+	private ArrayList<Account> accList;
 
 	// 계좌 추가
 	void addAccNumber(ClientDAO cDAO, String id) {

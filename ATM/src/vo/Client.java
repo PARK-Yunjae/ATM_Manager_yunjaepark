@@ -1,4 +1,4 @@
-package ATM;
+package vo;
 
 // 회원
 public class Client {

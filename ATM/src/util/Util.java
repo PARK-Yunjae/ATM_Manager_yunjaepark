@@ -1,4 +1,4 @@
-package ATM;
+package util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,17 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import dao.AccountDAO;
+import dao.ClientDAO;
+
 public class Util {
 
-	Scanner sc;
-
-	// 생성자
-	Util() {
-		sc = new Scanner(System.in);
-	}
+	public static Scanner sc = new Scanner(System.in);
 
 	// 숫자 예외사항 체크 후 반환
-	int getValue(String msg, int start, int end) {
+	public static int getValue(String msg, int start, int end) {
 		System.out.printf("%s[%d-%d] : ", msg, start, end);
 		try {
 			int num = sc.nextInt();
@@ -31,7 +29,7 @@ public class Util {
 		}
 		return -1;
 	}
-	String getValue(String msg) {
+	public static String getValue(String msg) {
 		System.out.print(msg);
 		String data = sc.next();
 		sc.nextLine();
@@ -40,7 +38,7 @@ public class Util {
 
 	// account.txt , client.txt	
 	// 데이터 클래스에서 가져온다
-	void saveToFile(AccountDAO aDAO, ClientDAO cDAO) {
+	public static void saveToFile(AccountDAO aDAO, ClientDAO cDAO) {
 		String aData = aDAO.saveAsFileData();
 		String cData = cDAO.saveAsFileData();
 
@@ -48,7 +46,7 @@ public class Util {
 		saveData("client.txt",cData);
 	}
 	// 데이터 저장
-	void saveData(String fileName, String data) {
+	public static void saveData(String fileName, String data) {
 		try(FileWriter fw = new FileWriter("src//ATM//"+fileName)){
 			fw.write(data);
 			System.out.println(fileName+"저장 성공");
@@ -58,7 +56,7 @@ public class Util {
 		}
 	}
 	// 데이터 클래스에 전달
-	void loadFromFile(AccountDAO aDAO, ClientDAO cDAO) {
+	public static void loadFromFile(AccountDAO aDAO, ClientDAO cDAO) {
 		String aData = loadData("account.txt");
 		String cData = loadData("client.txt");
 
@@ -67,7 +65,7 @@ public class Util {
 	}
 	
 	// 데이터 불러오기
-	String loadData(String fileName) {
+	public static String loadData(String fileName) {
 		String data = "";
 		try(FileReader fr = new FileReader("src//ATM//"+fileName);
 			BufferedReader br = new BufferedReader(fr)){
@@ -87,7 +85,7 @@ public class Util {
 		return data;
 	}
 
-	void tempData(AccountDAO aDAO, ClientDAO cDAO) {
+	public static void tempData(AccountDAO aDAO, ClientDAO cDAO) {
 		String userdata = "1001/test01/pw1/김철수\n";
 		userdata += "1002/test02/pw2/이영희\n";
 		userdata += "1003/test03/pw3/신민수\n";
